@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:visit_tracker/screens/Administrador/home_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -238,7 +238,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             'tipo_cuenta': tipoDeCuenta,
             'fe_creacion': FieldValue.serverTimestamp(),
           });
-
+          
           print('Usuario registrado: ${userCredential.user?.email}');
           showDialog(
             context: context,
@@ -272,6 +272,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ],
             ),
           );
+          final route = MaterialPageRoute(builder: (context)=> HomeScreenAdministrador());
+          Navigator.pushReplacement(context, route);
         } catch (e) {
           print('A ocurrido un error');
         }
